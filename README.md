@@ -1,5 +1,5 @@
 # Hackerank
-Practise examples in hackerank
+practice examples in hackerank
 
 The STATION table is described as follows:
 
@@ -82,4 +82,34 @@ SELECT DISTINCT city FROM station WHERE upper(city) RLIKE '^[^AEIOU].*|.*[^AEIOU
 SELECT DISTINCT CITY  
 FROM STATION   
 WHERE upper(substr(CITY,1,1)) NOT IN ('A','E','I','O','U') and upper(substr(CITY,LENGTH(CITY),1)) NOT IN ('A','E','I','O','U'); 
+```
+
+--Problem Statement
+
+/*
+Given a table TRIANGLES that holds data for three fields namely A, B, C.
++-------------+------------+
+| Column      |   Type     |
++-------------+------------+
+| A           | INTEGER    |
+| B           | INTEGER    |
+| C           | INTEGER    |
++-------------+------------+
+ 
+Write a query identifying the type of each record in the TRIANGLES table using its three side lengths. Output one of the following statements for each record in the table:
+
+Equilateral   : It's a triangle with  sides of equal length.
+Isosceles     : It's a triangle with  sides of equal length.
+Scalene       : It's a triangle with  sides of differing lengths.
+Not A Triangle: The given values of A, B, and C don't form a triangle.
+*/
+
+```sql
+SELECT CASE 
+WHEN A + B <=C OR B + C <= A OR C + A <= B THEN 'Not A Triangle'
+WHEN A = B AND B = C THEN 'Equilateral'
+WHEN A = B OR B = C OR C = A THEN 'Isosceles'
+ELSE 'Scalene'
+END
+FROM TRIANGLES;
 ```
